@@ -69,6 +69,18 @@ class ConversionTableViewController: UITableViewController {
         else if(indexPath.row == 1){
             performSegue(withIdentifier: "WeightSegue", sender: self)
         }
+        else if(indexPath.row == 2){
+            performSegue(withIdentifier: "SpeedSegue", sender: self)
+        }
+        else if(indexPath.row == 3){
+            performSegue(withIdentifier: "DistanceSegue", sender: self)
+        }
+        else if(indexPath.row == 4){
+            performSegue(withIdentifier: "RealVolumeSegue", sender: self)
+        }
+        else if(indexPath.row == 5){
+            performSegue(withIdentifier: "TemperatureSegue", sender: self)
+        }
         
         
     }
@@ -83,9 +95,10 @@ class ConversionTableViewController: UITableViewController {
     }
     
     func historyHandler(alert: UIAlertAction!){
-        //self.navigationController?.pushViewController(WeightViewController(), animated: true)
-        performSegue(withIdentifier: "WeightSegue", sender: self)
+//        let historyViewController = HistoryConversionTableViewController()
+//        self.navigationController?.pushViewController(historyViewController, animated: true)
         
+        performSegue(withIdentifier: "History", sender: self)
     }
     
     func constantHandler(alert: UIAlertAction!){

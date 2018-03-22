@@ -9,6 +9,7 @@
 import UIKit
 
 class WeightViewController: UIViewController, UITextFieldDelegate {
+    
 //    @IBOutlet weak var kgText: UITextField!
 //    @IBOutlet weak var gramText: UITextField!
 //    @IBOutlet weak var poundText: UITextField!
@@ -29,6 +30,7 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var poundText: NiceTextField!
     @IBOutlet weak var stoneText: NiceTextField!
     @IBOutlet weak var stonePText: NiceTextField!
+    
     
     @IBOutlet weak var saveButton: UIButton!
     
@@ -66,17 +68,68 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveButtonSelect(_ sender: UIButton) {
+        
+        let refreshAlert = UIAlertController(title: "Save", message: "Do you want to save the conversion?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+           
+            let kg = (self.kgText.text)
+            let grams = (self.gramText.text)
+            let ounce = (self.ounceText.text)
+            let pound = (self.poundText.text)
+            let stone = (self.stoneText.text)
+            
+            let weight = "\(kg ?? "unknown") kg = \(grams ?? "unknown") grams = \(ounce ?? "unknown") ounces = \(pound ?? "unknown") pounds = \(stone ?? "unknown") stones"
+            
+            var savedArray:Array<String>=[]
+            
+            let defaults = UserDefaults.standard
+            
+            if let userData = defaults.object(forKey: "values") as? [String]{
+                savedArray=userData
+            }
+            
+            if savedArray.count >= 5{
+                savedArray.remove(at: 0)
+            }
+            
+            savedArray.append(weight)
+            defaults.set(savedArray, forKey: "values")
+            defaults.synchronize()
+            print(savedArray)
+            
+            //set values to 0
+            self.kgText.text = "0"
+            self.stoneText.text = "0"
+            self.stonePText.text = "0"
+            self.poundText.text = "0"
+            self.ounceText.text = "0"
+            self.gramText.text = "0"
+            self.saveButton.isEnabled = false
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+            
+            
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+        
+        
+        
+        
     }
     
     @IBAction func kgChanged(_ sender: Any) {
         let kgValue = Float(kgText.text!)
         
         if(kgValue != nil) {
-            gramText.text = String(Float(kgValue!) * 1000)
-            stoneText.text = String(Float(kgValue!) * 0.157473)
-            stonePText.text = String(Float(kgValue!) * 12)
-            poundText.text = String(Float(kgValue!) * 2.204622)
-            ounceText.text = String(Float(kgValue!) * 2.204622)
+            gramText.text = String((Float(kgValue!) * 1000).rounded(toPlaces: 4))
+            stoneText.text = String((Float(kgValue!) * 0.157473).rounded(toPlaces: 4))
+            stonePText.text = String((Float(kgValue!) * 12).rounded(toPlaces: 4))
+            poundText.text = String((Float(kgValue!) * 2.204622).rounded(toPlaces: 4))
+            ounceText.text = String((Float(kgValue!) * 2.204622).rounded(toPlaces: 4))
             
             saveButton.isEnabled = true
         }
@@ -96,11 +149,11 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         let gramValue = Float(gramText.text!)
         
         if(gramValue != nil){
-            kgText.text = String(Float(gramValue!) * 0.001)
-            stoneText.text = String(Float(gramValue!) * 0.000157)
-            stonePText.text = String(Float(gramValue!) * 0.000157473)
-            poundText.text = String(Float(gramValue!) * 0.0022046)
-            ounceText.text = String(Float(gramValue!) * 2.204622)
+            kgText.text = String((Float(gramValue!) * 0.001).rounded(toPlaces: 4))
+            stoneText.text = String((Float(gramValue!) * 0.000157).rounded(toPlaces: 4))
+            stonePText.text = String((Float(gramValue!) * 0.000157473).rounded(toPlaces: 4))
+            poundText.text = String((Float(gramValue!) * 0.0022046).rounded(toPlaces: 4))
+            ounceText.text = String((Float(gramValue!) * 2.204622).rounded(toPlaces: 4))
             
             saveButton.isEnabled = true
         }
@@ -117,22 +170,106 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func ounceChanged(_ sender: Any) {
+        
+        let ounceValue = Float(ounceText.text!)
+        
+        if(ounceValue != nil){
+            kgText.text = String((Float(ounceValue!) * 0.0283495).rounded(toPlaces: 4))
+            stoneText.text = String((Float(ounceValue!) * 0.00446429).rounded(toPlaces: 4))
+            stonePText.text = String((Float(ounceValue!) * 0.0625).rounded(toPlaces: 4))
+            poundText.text = String((Float(ounceValue!) * 0.0625).rounded(toPlaces: 4))
+            gramText.text = String((Float(ounceValue!) * 28.3495).rounded(toPlaces: 4))
+            
+            saveButton.isEnabled = true
+        }
+        else{
+            kgText.text = "0"
+            stoneText.text = "0"
+            stonePText.text = "0"
+            poundText.text = "0"
+            gramText.text = "0"
+            saveButton.isEnabled = false
+        }
+        
     }
     
     @IBAction func poundChanged(_ sender: Any) {
+        
+        let poundValue = Float(poundText.text!)
+        
+        if(poundValue != nil){
+            kgText.text = String((Float(poundValue!) * 0.4535).rounded(toPlaces: 4))
+            stoneText.text = String((Float(poundValue!) * 0.0714).rounded(toPlaces: 4))
+            stonePText.text = String((Float(poundValue!) * 128).rounded(toPlaces: 4))
+            gramText.text = String((Float(poundValue!) * 453.592).rounded(toPlaces: 4))
+            
+            
+            saveButton.isEnabled = true
+        }
+        else{
+            kgText.text = "0"
+            stoneText.text = "0"
+            stonePText.text = "0"
+            gramText.text = "0"
+            saveButton.isEnabled = false
+        }
+
+        
     }
     
     @IBAction func stoneChanged(_ sender: Any) {
+        
+        let stoneValue = Float(stoneText.text!)
+        
+        if(stoneValue != nil){
+            kgText.text = String((Float(stoneValue!) * 3.78541).rounded(toPlaces: 4))
+            gramText.text = String((Float(stoneValue!) * 8).rounded(toPlaces: 4))
+            stonePText.text = String((Float(stoneValue!) * 128).rounded(toPlaces: 4))
+            poundText.text = String((Float(stoneValue!) * 128).rounded(toPlaces: 4))
+            
+            
+            saveButton.isEnabled = true
+        }
+        else{
+            kgText.text = "0"
+            poundText.text = "0"
+            stonePText.text = "0"
+            gramText.text = "0"
+            saveButton.isEnabled = false
+        }
+
+        
     }
     
     @IBAction func stonePoundChanged(_ sender: Any) {
+        
+        let stonePoundValue = Float(stonePText.text!)
+        
+        if(stonePoundValue != nil){
+            kgText.text = String((Float(stonePoundValue!) * 3.78541).rounded(toPlaces: 4))
+            stoneText.text = String((Float(stonePoundValue!) * 8).rounded(toPlaces: 4))
+            gramText.text = String((Float(stonePoundValue!) * 128).rounded(toPlaces: 4))
+            poundText.text = String((Float(stonePoundValue!) * 128).rounded(toPlaces: 4))
+            
+            
+            saveButton.isEnabled = true
+        }
+        else {
+            kgText.text = "0"
+            poundText.text = "0"
+            stoneText.text = "0"
+            gramText.text = "0"
+            saveButton.isEnabled = false
+            
+        }
+
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharacters = CharacterSet.decimalDigits
-        let characterSet = CharacterSet(charactersIn: string)
-        return allowedCharacters.isSuperset(of: characterSet)
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let allowedCharacters = CharacterSet.decimalDigits
+//        let characterSet = CharacterSet(charactersIn: string)
+//        return allowedCharacters.isSuperset(of: characterSet)
+//    }
     /*
     // MARK: - Navigation
 
@@ -142,5 +279,8 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
+
