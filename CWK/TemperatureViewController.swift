@@ -17,6 +17,10 @@ class TemperatureViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.celciusText.text = "0"
+        self.farenheitText.text = "0"
+        self.kelvinText.text = "0"
+        
         //setting only decimals valid
         self.celciusText.delegate = self
         self.farenheitText.delegate = self
@@ -30,6 +34,7 @@ class TemperatureViewController: UIViewController, UITextFieldDelegate {
         self.farenheitText.keyboardType = UIKeyboardType.decimalPad
         self.kelvinText.keyboardType = UIKeyboardType.decimalPad
        
+        addToolBar()
 
         // Do any additional setup after loading the view.
     }
@@ -86,7 +91,7 @@ class TemperatureViewController: UIViewController, UITextFieldDelegate {
             
             let defaults = UserDefaults.standard
             
-            if let userData = defaults.object(forKey: "values") as? [String]{
+            if let userData = defaults.object(forKey: "temperatureValues") as? [String]{
                 savedArray=userData
             }
             
@@ -95,7 +100,7 @@ class TemperatureViewController: UIViewController, UITextFieldDelegate {
             }
             
             savedArray.append(temperature)
-            defaults.set(savedArray, forKey: "values")
+            defaults.set(savedArray, forKey: "temperatureValues")
             defaults.synchronize()
             print(savedArray)
             
@@ -125,6 +130,83 @@ class TemperatureViewController: UIViewController, UITextFieldDelegate {
     func farToCent (far:Float)->Float{
         let cent = (far - 32)*(5/9)
         return cent
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let arrayOfString = newString.components(separatedBy: ".")
+        
+        if arrayOfString.count > 2 {
+            return false
+        }
+        return true
+    }
+    
+    func addToolBar(){
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 44))
+        let minusButton = UIBarButtonItem(title: "- (Minus)", style: .plain, target: self, action: #selector(toggleMinus))
+        toolbar.items = [minusButton]
+        farenheitText.inputAccessoryView = toolbar
+        celciusText.inputAccessoryView = toolbar
+        kelvinText.inputAccessoryView = toolbar
+    }
+    
+    @objc func toggleMinus(){
+        
+       // celciusText.text = "-\(celciusText.text ?? "unknown")"
+        
+        // Get text from text field
+        if var text = farenheitText.text , text.isEmpty != false{
+
+            // Toggle
+            if text.hasPrefix("-") {
+                text = text.replacingOccurrences(of: "-", with: "")
+            }
+            else
+            {
+                text = "-\(text)"
+            }
+
+            // Set text in text field
+            farenheitText.text = text
+
+        }
+
+        if var text = kelvinText.text , text.isEmpty != false{
+
+            // Toggle
+            if text.hasPrefix("-") {
+                text = text.replacingOccurrences(of: "-", with: "")
+            }
+            else
+            {
+                text = "-\(text)"
+            }
+
+            // Set text in text field
+            kelvinText.text = text
+
+        }
+
+        if var text = celciusText.text , text.isEmpty != false{
+
+            // Toggle
+            if text.hasPrefix("-") {
+                text = text.replacingOccurrences(of: "-", with: "")
+            }
+            else
+            {
+                text = "-\(text)"
+            }
+
+            // Set text in text field
+            celciusText.text = text
+
+        }
     }
     /*
     // MARK: - Navigation

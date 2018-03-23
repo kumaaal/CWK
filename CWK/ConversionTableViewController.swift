@@ -98,12 +98,12 @@ class ConversionTableViewController: UITableViewController {
 //        let historyViewController = HistoryConversionTableViewController()
 //        self.navigationController?.pushViewController(historyViewController, animated: true)
         
-        performSegue(withIdentifier: "History", sender: self)
+        performSegue(withIdentifier: "TestHistory", sender: self)
     }
     
     func constantHandler(alert: UIAlertAction!){
         //self.navigationController?.pushViewController(WeightViewController(), animated: true)
-        performSegue(withIdentifier: "VolumeSegue", sender: self)
+        performSegue(withIdentifier: "ConstantSegue", sender: self)
         
     }
 

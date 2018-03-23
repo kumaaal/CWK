@@ -66,7 +66,7 @@ class DistanceViewController: UIViewController, UITextFieldDelegate {
             
             let defaults = UserDefaults.standard
             
-            if let userData = defaults.object(forKey: "values") as? [String]{
+            if let userData = defaults.object(forKey: "distanceValues") as? [String]{
                 savedArray=userData
             }
             
@@ -75,7 +75,7 @@ class DistanceViewController: UIViewController, UITextFieldDelegate {
             }
             
             savedArray.append(distance)
-            defaults.set(savedArray, forKey: "values")
+            defaults.set(savedArray, forKey: "distanceValues")
             defaults.synchronize()
             print(savedArray)
             
@@ -220,6 +220,17 @@ class DistanceViewController: UIViewController, UITextFieldDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let arrayOfString = newString.components(separatedBy: ".")
+        
+        if arrayOfString.count > 2 {
+            return false
+        }
+        return true
     }
 }
 

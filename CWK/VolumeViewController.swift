@@ -167,7 +167,7 @@ class VolumeViewController: UIViewController, UITextFieldDelegate {
             
             let defaults = UserDefaults.standard
             
-            if let userData = defaults.object(forKey: "values") as? [String]{
+            if let userData = defaults.object(forKey: "liquidsValues") as? [String]{
                 savedArray=userData
             }
             
@@ -176,7 +176,7 @@ class VolumeViewController: UIViewController, UITextFieldDelegate {
             }
             
             savedArray.append(volume)
-            defaults.set(savedArray, forKey: "values")
+            defaults.set(savedArray, forKey: "liquidsValues")
             defaults.synchronize()
             
             self.gallonLabel.text = "0"
@@ -197,14 +197,6 @@ class VolumeViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharacters = CharacterSet.decimalDigits
-        let characterSet = CharacterSet(charactersIn: string)
-        return allowedCharacters.isSuperset(of: characterSet)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -217,7 +209,16 @@ class VolumeViewController: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let arrayOfString = newString.components(separatedBy: ".")
+        
+        if arrayOfString.count > 2 {
+            return false
+        }
+        return true
+    }
 
 }
 extension Float {
@@ -226,4 +227,6 @@ extension Float {
         let divisor = pow(10.0, Float(places))
         return (self * divisor).rounded() / divisor
     }
+    
+    
 }

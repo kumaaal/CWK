@@ -21,6 +21,10 @@
 		08A28CFB2062FA4000137AC3 /* SubHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28CFA2062FA4000137AC3 /* SubHistoryTableViewCell.swift */; };
 		08A28CFD206401EF00137AC3 /* HistoryConversionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28CFC206401EF00137AC3 /* HistoryConversionTableViewController.swift */; };
 		08A28CFF206402AB00137AC3 /* SubHistoryConversionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28CFE206402AB00137AC3 /* SubHistoryConversionTableViewCell.swift */; };
+		08A28D012064EE3400137AC3 /* ConstantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28D002064EE3400137AC3 /* ConstantsTableViewController.swift */; };
+		08A28D032064EEA300137AC3 /* SubConstantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28D022064EEA300137AC3 /* SubConstantTableViewCell.swift */; };
+		08A28D052065539200137AC3 /* HistoryTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28D042065539200137AC3 /* HistoryTestViewController.swift */; };
+		08A28D0720655E7C00137AC3 /* AnotherTableHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A28D0620655E7C00137AC3 /* AnotherTableHistoryTableViewCell.swift */; };
 		08BC0967204FF1B2009336F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC0966204FF1B2009336F3 /* AppDelegate.swift */; };
 		08BC096C204FF1B2009336F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BC096A204FF1B2009336F3 /* Main.storyboard */; };
 		08BC0971204FF1B2009336F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BC096F204FF1B2009336F3 /* LaunchScreen.storyboard */; };
@@ -60,6 +64,10 @@
 		08A28CFA2062FA4000137AC3 /* SubHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		08A28CFC206401EF00137AC3 /* HistoryConversionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConversionTableViewController.swift; sourceTree = "<group>"; };
 		08A28CFE206402AB00137AC3 /* SubHistoryConversionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHistoryConversionTableViewCell.swift; sourceTree = "<group>"; };
+		08A28D002064EE3400137AC3 /* ConstantsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTableViewController.swift; sourceTree = "<group>"; };
+		08A28D022064EEA300137AC3 /* SubConstantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubConstantTableViewCell.swift; sourceTree = "<group>"; };
+		08A28D042065539200137AC3 /* HistoryTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTestViewController.swift; sourceTree = "<group>"; };
+		08A28D0620655E7C00137AC3 /* AnotherTableHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherTableHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		08BC0963204FF1B2009336F3 /* CWK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CWK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BC0966204FF1B2009336F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08BC096B204FF1B2009336F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +144,10 @@
 				08A28CFC206401EF00137AC3 /* HistoryConversionTableViewController.swift */,
 				08A28CFE206402AB00137AC3 /* SubHistoryConversionTableViewCell.swift */,
 				0897221720582CE300591720 /* NiceTextField.swift */,
+				08A28D002064EE3400137AC3 /* ConstantsTableViewController.swift */,
+				08A28D022064EEA300137AC3 /* SubConstantTableViewCell.swift */,
+				08A28D042065539200137AC3 /* HistoryTestViewController.swift */,
+				08A28D0620655E7C00137AC3 /* AnotherTableHistoryTableViewCell.swift */,
 				08BC096A204FF1B2009336F3 /* Main.storyboard */,
 				08BC096F204FF1B2009336F3 /* LaunchScreen.storyboard */,
 				08BC0972204FF1B2009336F3 /* Info.plist */,
@@ -295,18 +307,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08A28D032064EEA300137AC3 /* SubConstantTableViewCell.swift in Sources */,
 				0897221A205CED0C00591720 /* RealVolumeSegueViewController.swift in Sources */,
 				089722102057A63900591720 /* SpeedViewController.swift in Sources */,
 				08A28CFD206401EF00137AC3 /* HistoryConversionTableViewController.swift in Sources */,
 				0897220C2056E5D300591720 /* WeightViewController.swift in Sources */,
 				08A28CFB2062FA4000137AC3 /* SubHistoryTableViewCell.swift in Sources */,
+				08A28D052065539200137AC3 /* HistoryTestViewController.swift in Sources */,
 				0897220E2057165D00591720 /* VolumeViewController.swift in Sources */,
 				0897221820582CE300591720 /* NiceTextField.swift in Sources */,
 				08A28CFF206402AB00137AC3 /* SubHistoryConversionTableViewCell.swift in Sources */,
+				08A28D012064EE3400137AC3 /* ConstantsTableViewController.swift in Sources */,
 				08BC0967204FF1B2009336F3 /* AppDelegate.swift in Sources */,
 				089722122057A64C00591720 /* DistanceViewController.swift in Sources */,
 				089722042055144F00591720 /* ConversionTableViewController.swift in Sources */,
 				08A28CF92062F49D00137AC3 /* HistoryTableViewController.swift in Sources */,
+				08A28D0720655E7C00137AC3 /* AnotherTableHistoryTableViewCell.swift in Sources */,
 				0897220A20551C4600591720 /* SubTableViewCell.swift in Sources */,
 				089722142057A79C00591720 /* TemperatureViewController.swift in Sources */,
 			);
